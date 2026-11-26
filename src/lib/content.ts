@@ -3,11 +3,12 @@
  * Danas čita lokalne TS fajlove; sutra ovde ide fetch ka CMS-u ili bazi
  * (potpis funkcija ostaje isti, pa se ostatak aplikacije ne menja).
  */
-import type { BookingPageContent, Locale, PageContent, Salon, SalonProfile, SiteContent } from '@/content/types';
+import type { BookingPageContent, Locale, PageContent, PricingPageContent, Salon, SalonProfile, SiteContent } from '@/content/types';
 import { site as siteEn } from '@/content/en/site';
 import { home as homeEn } from '@/content/en/home';
 import { booking as bookingEn, salons as salonsEn } from '@/content/en/booking';
 import { salonProfiles as salonProfilesEn } from '@/content/en/salon-profiles';
+import { pricing as pricingEn } from '@/content/en/pricing';
 
 export const defaultLocale: Locale = 'en';
 
@@ -42,4 +43,8 @@ export async function getSalon(
   const salon = (await getSalons(locale)).find((s) => s.slug === slug);
   const profile = salon && salonProfilesEn.find((p) => p.salonId === salon.id);
   return salon && profile ? { salon, profile } : null;
+}
+
+export async function getPricingPage(_locale: Locale = defaultLocale): Promise<PricingPageContent> {
+  return pricingEn;
 }
