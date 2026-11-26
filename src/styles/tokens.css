@@ -37,6 +37,12 @@
   /* Booking stranica: Figma "from new1 to #075a5c 160%" */
   --gradient-btn-booking: linear-gradient(90deg, var(--color-brand) 0%, var(--color-brand-700) 160%);
   --gradient-salon-hero: radial-gradient(ellipse 62% 125% at 25% 100%, var(--color-discovery) 0%, var(--color-surface-muted) 100%);
+  /* Pricing */
+  --gradient-pill-dark: linear-gradient(90deg, var(--color-brand) 0%, var(--color-ink) 100%);
+  --gradient-card-light: linear-gradient(90deg, var(--color-white) 0%, #f2f8f8 100%);
+  --gradient-card-dark: linear-gradient(90deg, var(--color-ink) 0%, #0c3a44 100%);
+  --color-card-dark-pill: #083d47;
+  --color-card-dark-divider: rgba(192, 210, 215, 0.18);
   --gradient-discovery: radial-gradient(ellipse 52% 58% at 50% 60%, var(--color-discovery) 0%, var(--color-surface-muted) 100%);
 
   /* Tipografija */

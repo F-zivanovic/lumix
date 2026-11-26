@@ -254,3 +254,46 @@ export interface SalonPageContent {
   closed: string;
   weekdaysShort: [string, string, string, string, string, string, string];
 }
+
+/* ---------- Pricing stranica ---------- */
+
+export type BillingPeriod = 'monthly' | 'annual';
+
+export interface PricingPlan {
+  id: string;
+  name: string;
+  description: string;
+  /** Cena pri mesečnom plaćanju (po mesecu). */
+  monthlyPrice: number;
+  /** Ukupna cena pri godišnjem plaćanju. */
+  annualPrice: number;
+  features: string[];
+  cta: string;
+  highlighted?: boolean;
+  badge?: string;
+}
+
+export interface PricingPageContent {
+  slug: string;
+  meta: { title: string; description: string };
+  eyebrow: string;
+  title: string;
+  titleAccent: string;
+  description: string;
+  currency: string;
+  billing: {
+    label: string;
+    monthly: string;
+    annual: string;
+    /** Oznaka uz godišnje plaćanje, npr. "2 months FREE". */
+    annualBadge: string;
+    perMonth: string;
+    /** `{amount}` = iznos sa valutom. */
+    billedAnnually: string;
+    billedMonthly: string;
+    saveAnnual: string;
+    saveIfAnnual: string;
+  };
+  signupHref: string;
+  plans: PricingPlan[];
+}

@@ -24,6 +24,7 @@ src/
     en/home.ts            sadržaj početne stranice
     en/booking.ts         booking stranica: tekstovi, usluge, gradovi, filteri + lista salona
     en/salon-profiles.ts  stranica salona: kategorije, usluge sa cenama, galerija
+    en/pricing.ts         pricing: paketi, cene (mesečno / godišnje), stavke
   lib/content.ts          JEDINI pristup sadržaju (ovde se kasnije uključuje CMS)
   lib/salon-search.ts     pravila pretrage salona (čiste funkcije, mogu i na server)
   lib/salon-format.ts     radno vreme ("Mon–Sat, 9 am–9 pm") i cene
@@ -35,6 +36,7 @@ src/
     booking/              interaktivni demo booking widgeta
     salons/               /booking: SalonFinder, SearchBar (usluge · lokacija · vreme), SalonCard
     salon-profile/        /booking/[slug]: SalonHero, SalonServices (kategorije, usluge, galerija)
+    pricing/              /pricing: paketi i klizač Monthly / Annually
 scripts/build-icons.mjs   generiše SVG ikonice iz Iconify setova
 public/images/            slike iz Figme
 ```
@@ -99,6 +101,17 @@ Figma: „Salon profile“ i „Manicure / Photos“. Sve stranice salona se gen
 - **URL** — `?category=manicure&media=photos`, pa se izbor može podeliti linkom.
 - **Podaci** — `content/en/salon-profiles.ts`; kasnije `getSalon()` u `lib/content.ts` čita API.
 
+## Pricing (`/pricing`)
+
+Tri paketa (Starter, Growth, Business) sa klizačem **Monthly / Annually**.
+
+- U sadržaju se za svaki paket unose samo `monthlyPrice` (mesečno plaćanje) i `annualPrice`
+  (ukupno za godinu). Sve ostalo se računa: cena po mesecu pri godišnjem plaćanju
+  (`annualPrice / 12`, npr. 30,000 → 2,500 RSD / mo) i ušteda (`monthlyPrice × 12 − annualPrice`).
+- Podrazumevano je godišnje plaćanje (kao u dizajnu). Izbor se pamti u URL-u (`?billing=monthly`)
+  i prenosi na registraciju: dugmad vode na `/signup?plan=starter&billing=annual`.
+- Mesečno stanje nije bilo u dizajnu: prikazuje „Billed monthly“ i savet koliko se štedi godišnjim plaćanjem.
+
 ## Napomene
 
 - Slike (`public/images`) su izvezene iz Figme u 1x rezoluciji. Za oštar prikaz na retina ekranima
@@ -106,5 +119,5 @@ Figma: „Salon profile“ i „Manicure / Photos“. Sve stranice salona se gen
 - Ikonice su ekvivalenti iz Iconify setova (tabler, mdi, lucide, fluent, weui, remix). Imena Figma
   slojeva (`tabler:check`, `weui:arrow-filled`, `fluent:cursor-click-24-filled`) odgovaraju 1:1, a za
   ostale je izabran najbliži ekvivalent.
-- Linkovi ka stranicama koje još ne postoje (`/pricing`, `/login`, `/signup`...) su već u sadržaju i
+- Linkovi ka stranicama koje još ne postoje (`/login`, `/signup`...) su već u sadržaju i
   počeće da rade čim te stranice budu dodate.

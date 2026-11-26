@@ -1,0 +1,215 @@
+.section { background: var(--color-surface-muted); }
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  padding-top: 112px;
+  padding-bottom: 96px;
+}
+
+/* ---------- Uvod ---------- */
+.intro { display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+.title {
+  margin-top: 20px;
+  font-size: var(--fs-h2-lg);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+.accent { color: var(--color-brand); }
+
+.description {
+  max-width: 780px;
+  margin-top: 24px;
+  font-size: var(--fs-18);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* ---------- Klizač ---------- */
+.billing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.periodLabel {
+  font-size: var(--fs-15);
+  line-height: 18px;
+  color: var(--color-text-muted);
+  transition: color var(--dur) var(--ease);
+}
+.periodLabel:hover { color: var(--color-ink); }
+.periodLabel[aria-pressed='true'] { font-weight: 600; color: var(--color-ink); }
+
+.switch {
+  position: relative;
+  flex-shrink: 0;
+  width: 40px;
+  height: 22px;
+  border-radius: var(--radius-pill);
+  background: var(--color-brand);
+  transition: background-color var(--dur) var(--ease);
+}
+.switch:hover { background: var(--color-brand-600); }
+.knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-white);
+  box-shadow: 0 1px 3px rgba(1, 18, 28, 0.25);
+  transition: transform 220ms var(--ease);
+}
+.switch[aria-checked='true'] .knob { transform: translateX(18px); }
+
+.freeBadge {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  background: var(--gradient-pill-dark);
+  font-size: var(--fs-12);
+  font-weight: 700;
+  line-height: 15px;
+  color: var(--color-white);
+}
+
+/* ---------- Kartice ---------- */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  align-items: stretch;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 32px 24px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-card-light);
+  color: var(--color-ink);
+}
+
+.cardHead { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.planName { font-size: var(--fs-22); font-weight: 700; line-height: 27px; }
+
+.popular {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  background: var(--color-card-dark-pill);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 12px;
+  text-transform: uppercase;
+  color: var(--color-brand-light);
+}
+
+.planDescription {
+  min-height: 48px;
+  margin-top: 22px;
+  font-size: var(--fs-15);
+  line-height: 24px;
+  color: var(--color-text-muted);
+}
+
+.priceBlock { margin-top: 22px; animation: price-in 240ms var(--ease); }
+@keyframes price-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.price { display: flex; align-items: baseline; flex-wrap: wrap; }
+.amount { font-size: 2.75rem; font-weight: 700; line-height: 53px; letter-spacing: -0.5px; font-variant-numeric: tabular-nums; }
+.unit { margin-left: 4px; font-size: var(--fs-14); line-height: 17px; color: var(--color-text-muted); }
+
+.billed { margin-top: 6px; font-size: var(--fs-13); line-height: 16px; color: var(--color-text-muted); }
+
+.save {
+  display: inline-flex;
+  margin-top: 8px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #e0f2f3;
+  font-size: var(--fs-12);
+  font-weight: 600;
+  line-height: 15px;
+  color: var(--color-brand);
+}
+/* Mesečno: ista pozicija, ali kao savet umesto uštede */
+.saveHint { background: transparent; padding-inline: 0; font-weight: 500; }
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 55px;
+  margin-top: 24px;
+  border: 1px solid var(--color-brand);
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  font-size: var(--fs-16);
+  font-weight: 600;
+  line-height: 19px;
+  color: var(--color-ink);
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease), filter var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.cta:hover { background: var(--color-brand); color: var(--color-white); transform: translateY(-1px); }
+.ctaPrimary { border-color: transparent; background: var(--gradient-btn-booking); color: var(--color-white); }
+.ctaPrimary:hover { background: var(--gradient-btn-booking); filter: brightness(1.08); box-shadow: 0 8px 24px -8px rgba(12, 152, 155, 0.6); }
+.ctaIcon { flex-shrink: 0; transition: transform var(--dur) var(--ease); }
+.ctaIcon :global(*) { vector-effect: non-scaling-stroke; stroke-width: 1.7px; }
+.ctaPrimary:hover .ctaIcon { transform: translateX(2px); }
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+.feature { display: flex; align-items: flex-start; gap: 12px; font-size: var(--fs-14); line-height: 21px; }
+.check { flex-shrink: 0; margin-top: 2px; color: var(--color-brand); }
+
+/* ---------- Istaknuta kartica (Growth) ---------- */
+.featured {
+  border: 2px solid var(--color-brand);
+  background: var(--gradient-card-dark);
+  color: var(--color-white);
+}
+.featured .planDescription,
+.featured .unit,
+.featured .billed { color: var(--color-muted-on-dark); }
+.featured .save { background: #033039; color: var(--color-brand-light); }
+.featured .saveHint { background: transparent; }
+.featured .features { border-top-color: var(--color-card-dark-divider); }
+.featured .check { color: var(--color-brand-light); }
+
+/* ---------- Manji ekrani ---------- */
+@media (max-width: 1024px) {
+  .plans { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; width: 100%; }
+  .planDescription { min-height: 0; }
+}
+
+@media (max-width: 640px) {
+  .inner { gap: 40px; padding-top: 56px; padding-bottom: 64px; }
+  .description { font-size: var(--fs-16); }
+  .card { padding: 28px 24px 24px; }
+}
