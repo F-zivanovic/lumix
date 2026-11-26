@@ -1,0 +1,32 @@
+{
+  "name": "lumix-book",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:static": "NEXT_OUTPUT=export next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "icons": "node scripts/build-icons.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@iconify-json/fluent": "^1.2.62",
+    "@iconify-json/lucide": "^1.2.160",
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/ri": "^1.2.10",
+    "@iconify-json/tabler": "^1.2.47",
+    "@iconify-json/weui": "^1.2.4",
+    "@iconify/utils": "^3.1.7",
+    "@types/node": "^26.6.11",
+    "@types/react": "^19.3.3",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^5.9.3"
+  }
+}

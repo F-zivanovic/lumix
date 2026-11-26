@@ -1,0 +1,41 @@
+.section { padding-top: 113px; }
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.title { margin-top: 32px; }
+.description {
+  max-width: 979px;
+  margin-top: 35px;
+  font-size: var(--fs-18);
+  line-height: var(--lh-body);
+}
+
+/* Widget "sedi" na prelazu bele u tamnu pozadinu (Figma: Rectangle 3 od 61,6% visine widgeta) */
+.stage {
+  position: relative;
+  margin-top: 103px;
+  padding-bottom: 203px;
+  isolation: isolate;
+}
+.stage::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(203px + min(259px, 22.5vw));
+  background: var(--color-ink);
+  z-index: -1;
+}
+
+@media (max-width: 960px) {
+  .section { padding-top: var(--section-y); }
+  .title { margin-top: 24px; }
+  .description { margin-top: 24px; font-size: var(--fs-16); }
+  .stage { margin-top: 56px; padding-bottom: 80px; }
+  .stage::before { height: calc(80px + 22vw); }
+}

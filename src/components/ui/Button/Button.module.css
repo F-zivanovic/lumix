@@ -1,0 +1,50 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  border-radius: var(--radius-pill);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    background-color var(--dur) var(--ease), filter var(--dur) var(--ease);
+}
+
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+/* Veličine */
+.lg { height: 55px; padding-inline: 28px; font-size: var(--fs-16); }
+.md { height: 52px; padding-inline: 36px; font-size: var(--fs-15); }
+.sm { height: 37px; padding-inline: 16px; font-size: var(--fs-14); border-radius: var(--radius-sm); font-weight: 700; }
+
+/* Varijante */
+.primary { color: var(--color-white); }
+.primary:hover { filter: brightness(1.08); box-shadow: 0 8px 24px -8px rgba(12, 152, 155, 0.6); }
+.tone-hero { background: var(--gradient-btn-hero); }
+.tone-default { background: var(--gradient-btn); }
+.tone-footer { background: var(--gradient-btn-footer); }
+
+.outline {
+  color: var(--color-white);
+  border: 1px solid #0c979a;
+  background: transparent;
+}
+.outline:hover { background: rgba(12, 152, 155, 0.14); }
+
+.solid { color: var(--color-white); background: var(--color-brand); }
+.solid:hover { background: var(--color-brand-600); }
+
+.ghost { color: var(--color-brand); font-weight: 700; padding-inline: 0; height: auto; }
+.ghost:hover { color: var(--color-brand-600); transform: none; }
+
+.icon { flex-shrink: 0; }
+
+/* Minimalne širine iz Figme */
+.outline.lg, .outline.md { min-width: 192px; }
+.hasIcon { min-width: 206px; }
+
+@media (max-width: 480px) {
+  .lg, .md { width: 100%; }
+}

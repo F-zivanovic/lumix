@@ -1,0 +1,20 @@
+.heading {
+  font-weight: 700;
+  line-height: 1.21;
+  text-wrap: balance;
+}
+.md { font-size: var(--fs-h2); }
+.lg { font-size: var(--fs-h2-lg); }
+
+.light,
+.dark {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  /* gradijent prati širinu teksta, ne celog reda */
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+.light { background-image: var(--gradient-heading-light); }
+.dark { background-image: var(--gradient-heading-dark); }

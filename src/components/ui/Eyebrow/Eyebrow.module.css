@@ -1,0 +1,14 @@
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border-radius: 33px;
+  font-size: var(--fs-14);
+  font-weight: 700;
+  line-height: 17px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.light { background: var(--color-brand-tint); color: var(--color-brand); }
+.dark { background: var(--color-brand-tint-strong); color: var(--color-white); border-radius: 32px; }

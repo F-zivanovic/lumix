@@ -1,0 +1,92 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-ink);
+  color: var(--color-white);
+  isolation: isolate;
+}
+
+/* Zamućene teal elipse iza laptopa (Ellipse 1 / Ellipse 2 u Figmi) */
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(80px);
+}
+.glow { filter: none; }
+/* Figma: elipsa 478px sa vrlo velikim zamućenjem → širok, mek sjaj */
+.glowLg {
+  width: 1700px;
+  height: 1700px;
+  left: calc(50% + 328px - 850px);
+  top: calc(394px - 850px);
+  background: radial-gradient(circle closest-side, rgba(12, 152, 155, 0.5) 0%, rgba(12, 152, 155, 0.26) 30%, rgba(12, 152, 155, 0.08) 62%, transparent 100%);
+}
+.glowSm {
+  width: 760px;
+  height: 760px;
+  left: calc(50% + 427px - 380px);
+  top: calc(555px - 380px);
+  background: radial-gradient(circle closest-side, rgba(12, 152, 155, 0.35) 0%, rgba(12, 152, 155, 0.1) 55%, transparent 100%);
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 750px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.copy { flex: 0 0 579px; max-width: 579px; position: relative; z-index: 1; }
+
+.title {
+  max-width: 575px;
+  font-size: var(--fs-h1);
+  font-weight: 600;
+  line-height: 1.21;
+}
+
+.description {
+  margin-top: 16px;
+  font-size: var(--fs-16);
+  line-height: var(--lh-body);
+}
+
+.ctas { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 40px; }
+
+.media {
+  flex: 0 0 auto;
+  width: 649.5px;
+  margin-left: -30px;
+  margin-right: -42.5px; /* laptop u Figmi prelazi desnu ivicu kontejnera */
+  margin-top: 50px; /* laptop je u Figmi 25px niže od centra */
+}
+.media img { width: 100%; height: auto; }
+
+@media (max-width: 1240px) {
+  .copy { flex-basis: 48%; }
+  .media { width: 52%; margin-right: 0; margin-left: -2%; }
+}
+
+@media (max-width: 960px) {
+  .inner {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+    padding-top: 64px;
+    padding-bottom: 72px;
+    gap: 48px;
+  }
+  .copy { flex-basis: auto; max-width: 640px; margin-top: 0; }
+  .media { width: min(100%, 650px); align-self: center; margin-top: 0; }
+  .glowLg { left: auto; right: -900px; top: auto; bottom: -700px; }
+  .glowSm { display: none; }
+}
+
+@media (max-width: 480px) {
+  .ctas { gap: 14px; margin-top: 32px; }
+}

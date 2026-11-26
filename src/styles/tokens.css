@@ -1,0 +1,66 @@
+/*
+ * Dizajn tokeni — jedino mesto za boje, tipografiju, razmake i senke.
+ * Nazivi prate Figma varijable (new = ink, new1 = brand, okvir = border).
+ */
+:root {
+  /* Boje */
+  --color-ink: #01121c;            /* Figma: --new */
+  --color-brand: #0c989b;          /* Figma: --new1 */
+  --color-brand-600: #086668;
+  --color-brand-700: #075a5c;
+  --color-brand-900: #043435;
+  --color-brand-light: #4ad2d2;
+  --color-brand-tint: rgba(12, 152, 155, 0.11);
+  --color-brand-tint-strong: rgba(12, 152, 155, 0.32);
+  --color-border: #e4e4e4;         /* Figma: --okvir */
+  --color-border-soft: #e8e8e8;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f8fbfc;
+  --color-muted-on-dark: #c0d2d7;
+  --color-skeleton: #b6b6b6;
+  --color-white: #ffffff;
+
+  /* Gradijenti */
+  --gradient-heading-light: linear-gradient(90deg, var(--color-brand) 0%, var(--color-ink) 100%);
+  --gradient-heading-dark: linear-gradient(90deg, var(--color-brand) 0%, var(--color-white) 80%);
+  --gradient-btn-hero: linear-gradient(90deg, var(--color-brand) 0%, var(--color-brand-600) 81.17%, var(--color-brand-700) 100%);
+  --gradient-btn: linear-gradient(90deg, var(--color-brand) 0%, var(--color-brand-600) 91%);
+  --gradient-btn-footer: linear-gradient(90deg, var(--color-brand) 0%, #097174 100%);
+  --gradient-legal: linear-gradient(90deg, var(--color-brand) 0%, #065152 100%);
+
+  /* Tipografija */
+  --font-sans: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fs-12: 0.75rem;
+  --fs-14: 0.875rem;
+  --fs-15: 0.9375rem;
+  --fs-16: 1rem;
+  --fs-18: 1.125rem;
+  --fs-20: 1.25rem;
+  --fs-h2: clamp(1.75rem, 1.2rem + 1.6vw, 2.25rem);   /* 36px */
+  --fs-h2-lg: clamp(1.875rem, 1.2rem + 1.9vw, 2.5rem); /* 40px */
+  --fs-h1: clamp(2.25rem, 1.5rem + 2.2vw, 3rem);      /* 48px */
+  --lh-body: 1.6;
+
+  /* Layout */
+  --container: 1156px;
+  --gutter: clamp(20px, 4vw, 40px);
+  --header-h: 80px;
+  --section-y: clamp(72px, 9vw, 120px);
+
+  /* Radijusi */
+  --radius-sm: 8px;
+  --radius-md: 15px;
+  --radius-lg: 30px;
+  --radius-xl: 36px;
+  --radius-pill: 999px;
+
+  /* Senke */
+  --shadow-card: 0 0 16.3px 7px rgba(0, 0, 0, 0.07);
+  --shadow-showcase: 0 0 14.7px 12px rgba(0, 0, 0, 0.06);
+  --shadow-panel: 0 0 21.2px 0 rgba(0, 0, 0, 0.1);
+  --shadow-tile: 0 0 10.6px rgba(0, 0, 0, 0.1);
+
+  /* Pokret */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur: 200ms;
+}

@@ -1,0 +1,121 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
+/* Ellipse 3 — donji levi ugao */
+.glowBl {
+  width: 1200px;
+  height: 1200px;
+  left: -515px;
+  top: 232px;
+  background: radial-gradient(circle, rgba(12, 152, 155, 0.42) 0%, rgba(12, 152, 155, 0.14) 32%, transparent 60%);
+}
+/* Ellipse 4 — gornji desni ugao */
+.glowTr {
+  width: 620px;
+  height: 620px;
+  right: -370px;
+  top: -310px;
+  background: radial-gradient(circle, rgba(12, 152, 155, 0.5) 0%, rgba(12, 152, 155, 0.15) 35%, transparent 62%);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 45px;
+  padding-top: 93px;
+  padding-bottom: 93px;
+}
+
+.copy { flex: 0 0 511px; max-width: 511px; }
+
+.title {
+  max-width: 452px;
+  margin-top: 16px;
+  font-weight: 600;
+  line-height: 1.22;
+}
+
+.card {
+  margin-top: 40px;
+  padding: 41px 37px 42px;
+  border-radius: var(--radius-lg);
+  background: var(--color-brand-tint-strong);
+}
+
+.description { max-width: 436px; font-size: var(--fs-15); line-height: var(--lh-body); }
+
+.bullets { margin-top: 16px; }
+.bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12.75px;
+  font-size: var(--fs-15);
+  font-weight: 600;
+  line-height: 1.84;
+}
+.check { flex-shrink: 0; margin-top: 5px; color: var(--color-brand); }
+
+.ctas { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 24px; }
+
+.media {
+  flex: 0 0 auto;
+  width: 685px;
+  margin-right: -85px; /* panel prelazi desnu ivicu kontejnera kao u Figmi */
+}
+
+/* "Staklena" ploča sa zamućenim ivicama */
+.frame {
+  position: relative;
+  padding: 19px 24px 19px 23px;
+}
+.frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 32px;
+  background: rgba(233, 229, 229, 0.08);
+  filter: blur(2.6px);
+  z-index: -1;
+}
+.shot { width: 100%; height: auto; border-radius: 12px; }
+
+.cursor {
+  position: absolute;
+  left: 42.04%;
+  top: 55.7%;
+  color: var(--color-ink);
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.9));
+  animation: tap 2.4s var(--ease) infinite;
+}
+@keyframes tap {
+  0%, 70%, 100% { transform: scale(1); }
+  80% { transform: scale(0.85); }
+}
+
+@media (max-width: 1360px) {
+  .media { margin-right: 0; width: auto; flex: 1 1 auto; min-width: 0; }
+}
+
+@media (max-width: 1100px) {
+  .copy { flex-basis: 46%; }
+}
+
+@media (max-width: 960px) {
+  .inner { flex-direction: column; align-items: stretch; gap: 48px; padding-top: var(--section-y); padding-bottom: var(--section-y); }
+  .copy { flex-basis: auto; max-width: 640px; }
+  .card { padding: 32px 24px; }
+  .media { width: 100%; max-width: 685px; align-self: center; }
+  .frame { padding: 12px; }
+}
