@@ -36,6 +36,13 @@ const ICONS = {
   sunrise: 'lucide:sunrise',
   sun: 'lucide:sun',
   moon: 'lucide:moon',
+  // Stranica salona
+  'arrow-left': 'lucide:arrow-left',
+  'arrow-up-right': 'lucide:arrow-up-right',
+  clock: 'lucide:clock-3',
+  building: 'lucide:building',
+  image: 'lucide:image',
+  video: 'lucide:video',
 };
 
 const sets = {};
