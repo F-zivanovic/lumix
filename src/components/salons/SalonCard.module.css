@@ -1,0 +1,69 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-salon);
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.card:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -12px rgba(1, 18, 28, 0.14); }
+
+.photo { position: relative; height: 230px; overflow: hidden; }
+.image { object-fit: cover; transition: transform 600ms var(--ease); }
+.card:hover .image { transform: scale(1.03); }
+
+.rating,
+.newBadge {
+  position: absolute;
+  top: 16px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 64px;
+  font-size: var(--fs-12);
+  line-height: 15px;
+}
+.rating { right: 16px; gap: 5px; padding: 7px 10px; background: var(--color-surface); color: var(--color-ink); }
+.rating strong { font-weight: 700; }
+.star { color: var(--color-brand); }
+.reviews { color: var(--color-text-muted); }
+.newBadge { left: 16px; padding: 7px 12px; background: var(--color-badge); color: var(--color-brand-700); font-weight: 600; }
+
+.info { display: flex; flex: 1; flex-direction: column; gap: 14px; padding: 24px; }
+.identity { display: flex; flex-direction: column; gap: 8px; }
+.name { font-size: var(--fs-22); font-weight: 700; line-height: 27px; color: var(--color-ink); }
+.address { min-height: 42px; font-size: var(--fs-13); line-height: 1.6; color: var(--color-text-muted); }
+.distance { color: var(--color-brand-700); font-weight: 500; }
+.description { min-height: 44px; font-size: var(--fs-14); line-height: 1.6; color: var(--color-text-body); }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  padding: 5px 10px;
+  border-radius: 64px;
+  background: var(--color-tag);
+  font-size: var(--fs-12);
+  line-height: 15px;
+  color: var(--color-brand-700);
+}
+
+.book {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 52px;
+  margin-top: auto;
+  padding: 0 24px;
+  border-radius: 64px;
+  background: var(--gradient-btn-booking);
+  color: var(--color-white);
+  font-size: var(--fs-15);
+  font-weight: 600;
+  line-height: 18px;
+  transition: filter var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.book:hover { filter: brightness(1.08); box-shadow: 0 8px 24px -8px rgba(12, 152, 155, 0.6); }
+.bookIcon { flex-shrink: 0; transition: transform var(--dur) var(--ease); }
+.bookIcon :global(*) { vector-effect: non-scaling-stroke; stroke-width: 1.7px; }
+.book:hover .bookIcon { transform: translateX(2px); }
