@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import type { SiteContent } from '@/content/types';
 import { Icon } from '@/components/ui';
@@ -16,6 +17,9 @@ interface HeaderProps {
 export function Header({ site, activeHref }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  // Aktivna stavka: eksplicitno zadata ili ona čija ruta odgovara trenutnoj (/booking, /booking/...)
+  const current = activeHref ?? site.nav.find((i) => !i.href.includes('#') && pathname.startsWith(i.href))?.href;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -45,7 +49,7 @@ export function Header({ site, activeHref }: HeaderProps) {
                 <Link
                   href={item.href}
                   className={styles.navLink}
-                  aria-current={activeHref === item.href ? 'page' : undefined}
+                  aria-current={current === item.href ? 'page' : undefined}
                   onClick={() => setOpen(false)}
                 >
                   {item.label}

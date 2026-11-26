@@ -49,7 +49,8 @@
   transform-origin: left;
   transition: transform var(--dur) var(--ease);
 }
-.navLink:hover { color: var(--color-brand); }
+.navLink:hover,
+.navLink[aria-current='page'] { color: var(--color-brand); }
 .navLink:hover::after,
 .navLink[aria-current='page']::after { transform: scaleX(1); }
 

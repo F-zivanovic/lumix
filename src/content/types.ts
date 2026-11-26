@@ -115,3 +115,90 @@ export interface BookingWidgetContent {
   back: string;
   next: string;
 }
+
+/* ---------- Booking stranica (lista salona) ---------- */
+
+export type ServiceId = string;
+export type CityId = string;
+
+/** Radno vreme po danu u nedelji: 0 = nedelja ... 6 = subota. `null` = zatvoreno. */
+export type OpeningHours = Record<0 | 1 | 2 | 3 | 4 | 5 | 6, { open: string; close: string } | null>;
+
+export interface Salon {
+  id: string;
+  slug: string;
+  name: string;
+  address: string;
+  city: CityId;
+  description: string;
+  services: ServiceId[];
+  rating: number;
+  reviews: number;
+  isNew: boolean;
+  image: ImageAsset;
+  coords: { lat: number; lng: number };
+  hours: OpeningHours;
+}
+
+export type QuickFilterId = 'all' | 'nearby' | 'new' | 'top' | 'reviewed';
+export type DayPartId = 'any' | 'morning' | 'afternoon' | 'evening';
+
+export interface BookingPageContent {
+  slug: string;
+  meta: { title: string; description: string };
+  intro: { eyebrow: string; title: string; description: string };
+  search: {
+    label: string;
+    submit: string;
+    services: {
+      label: string;
+      all: string;
+      filterPlaceholder: string;
+      noMatch: string;
+      clear: string;
+      done: string;
+    };
+    location: {
+      label: string;
+      current: string;
+      currentHint: string;
+      locating: string;
+      denied: string;
+      anywhere: string;
+      citiesTitle: string;
+    };
+    time: {
+      label: string;
+      any: string;
+      today: string;
+      tomorrow: string;
+      dateTitle: string;
+      partTitle: string;
+      clear: string;
+      done: string;
+      prevMonth: string;
+      nextMonth: string;
+    };
+  };
+  activity: { start: number; suffix: string; stepMs: number; steps: number };
+  /** Usluge i gradovi po kojima se pretražuje (u CMS-u bi to bile referentne kolekcije). */
+  services: { id: ServiceId; label: string }[];
+  cities: { id: CityId; label: string; coords: { lat: number; lng: number } }[];
+  dayParts: { id: Exclude<DayPartId, 'any'>; label: string; from: number; to: number; icon: IconName }[];
+  quickFilters: { id: QuickFilterId; label: string; icon: IconName }[];
+  nearbyRadiusKm: number;
+  results: {
+    /** `{count}` se menja brojem salona. */
+    found: { one: string; other: string };
+    hint: string;
+    allShown: { one: string; other: string };
+    emptyTitle: string;
+    emptyText: string;
+    clearFilters: string;
+    nearbyDenied: string;
+    book: string;
+    newBadge: string;
+    away: string;
+  };
+  closing: ClosingCtaSection;
+}

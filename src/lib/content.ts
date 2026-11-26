@@ -3,9 +3,10 @@
  * Danas čita lokalne TS fajlove; sutra ovde ide fetch ka CMS-u ili bazi
  * (potpis funkcija ostaje isti, pa se ostatak aplikacije ne menja).
  */
-import type { Locale, PageContent, SiteContent } from '@/content/types';
+import type { BookingPageContent, Locale, PageContent, Salon, SiteContent } from '@/content/types';
 import { site as siteEn } from '@/content/en/site';
 import { home as homeEn } from '@/content/en/home';
+import { booking as bookingEn, salons as salonsEn } from '@/content/en/booking';
 
 export const defaultLocale: Locale = 'en';
 
@@ -13,6 +14,7 @@ const sites: Partial<Record<Locale, SiteContent>> = { en: siteEn };
 const pages: Partial<Record<Locale, Record<string, PageContent>>> = {
   en: { [homeEn.slug]: homeEn },
 };
+const bookingPages: Partial<Record<Locale, BookingPageContent>> = { en: bookingEn };
 
 export async function getSiteContent(locale: Locale = defaultLocale): Promise<SiteContent> {
   return sites[locale] ?? siteEn;
@@ -20,4 +22,13 @@ export async function getSiteContent(locale: Locale = defaultLocale): Promise<Si
 
 export async function getPage(slug: string, locale: Locale = defaultLocale): Promise<PageContent | null> {
   return pages[locale]?.[slug] ?? pages[defaultLocale]?.[slug] ?? null;
+}
+
+export async function getBookingPage(locale: Locale = defaultLocale): Promise<BookingPageContent> {
+  return bookingPages[locale] ?? bookingEn;
+}
+
+/** Lista salona. Kada postoji backend, ovde ide `fetch('/api/salons')` ili upit ka bazi. */
+export async function getSalons(_locale: Locale = defaultLocale): Promise<Salon[]> {
+  return salonsEn;
 }

@@ -22,6 +22,20 @@ const ICONS = {
   close: 'tabler:x',
   search: 'tabler:search',
   menu: 'tabler:menu-2',
+  // Booking stranica (Lucide — imena slojeva iz Figme)
+  'search-lucide': 'lucide:search',
+  'map-pin': 'lucide:map-pin',
+  'grid-2x2': 'lucide:grid-2x2',
+  sparkles: 'lucide:sparkles',
+  star: 'lucide:star',
+  'message-square': 'lucide:message-square',
+  'calendar-blank': 'lucide:calendar',
+  'chevron-left': 'lucide:chevron-left',
+  'locate-fixed': 'lucide:locate-fixed',
+  'check-lucide': 'lucide:check',
+  sunrise: 'lucide:sunrise',
+  sun: 'lucide:sun',
+  moon: 'lucide:moon',
 };
 
 const sets = {};
