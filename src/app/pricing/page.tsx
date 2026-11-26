@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { getPricingPage } from '@/lib/content';
-import { Pricing } from '@/components/pricing/Pricing';
+import { PricingView } from '@/components/pricing/Pricing';
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPricingPage();
@@ -9,5 +9,5 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function PricingPage() {
   const page = await getPricingPage();
-  return <Pricing content={page} />;
+  return <PricingView content={page} />;
 }

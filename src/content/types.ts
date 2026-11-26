@@ -292,8 +292,42 @@ export interface PricingPageContent {
     billedAnnually: string;
     billedMonthly: string;
     saveAnnual: string;
-    saveIfAnnual: string;
   };
   signupHref: string;
   plans: PricingPlan[];
+  sections: PricingSections;
+}
+
+/** Vrednost u tabeli poređenja: true = uključeno, false = nije, tekst = vrednost ("Up to 5"). */
+export type CompareValue = boolean | string;
+
+export interface PricingSections {
+  website: {
+    eyebrow: string;
+    title: string;
+    titleAccent: string;
+    description: string;
+    features: { icon: IconName; title: string; text: string }[];
+    note: string;
+  };
+  compare: {
+    title: string;
+    description: string;
+    featuresLabel: string;
+    included: string;
+    notIncluded: string;
+    /** Vrednosti po paketu, istim redom kao `plans`. */
+    groups: { title: string; rows: { label: string; values: CompareValue[] }[] }[];
+  };
+  messages: {
+    title: string;
+    description: string;
+    note: string;
+    unit: string;
+    currency: string;
+    popularLabel: string;
+    packs: { messages: number; price: number; popular?: boolean }[];
+  };
+  faq: { eyebrow: string; title: string; items: { question: string; answer: string }[] };
+  closing: ClosingCtaSection;
 }

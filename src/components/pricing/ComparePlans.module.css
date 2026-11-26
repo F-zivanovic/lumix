@@ -1,0 +1,93 @@
+.section { padding-top: 100px; }
+
+.intro { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+.title { font-size: var(--fs-h2); font-weight: 700; line-height: 1.2; color: var(--color-ink); }
+.description { font-size: var(--fs-18); line-height: 1.6; color: var(--color-text-muted); }
+
+.scroller {
+  position: relative;
+  margin-top: 46px;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  background: var(--color-surface-muted);
+  font-size: var(--fs-14);
+  color: var(--color-ink);
+}
+/* Figma: kolona sa nazivima 439px, paketi po 239px */
+.labelCol { width: 38%; }
+
+.table th,
+.table td { padding: 0; text-align: center; font-weight: 400; }
+
+/* ---------- Zaglavlje ---------- */
+.table thead tr { background: var(--gradient-card-dark); color: var(--color-white); }
+.headLabel,
+.headPlan { height: 84px; font-size: var(--fs-15); font-weight: 600 !important; }
+.headLabel { padding-left: 24px !important; text-align: left !important; }
+.headPlan { font-size: var(--fs-16); }
+.headFeatured { background: var(--color-tag); color: var(--color-ink); }
+
+/* ---------- Grupe i redovi ---------- */
+.groupRow th {
+  height: 43px;
+  padding-left: 24px !important;
+  background: #edf3f4;
+  font-size: var(--fs-12);
+  font-weight: 700 !important;
+  letter-spacing: 1.2px;
+  text-align: left !important;
+  text-transform: uppercase;
+  color: var(--color-text-body);
+}
+
+.row { height: 58px; }
+.row > * { border-bottom: 1px solid var(--color-border); }
+/* Linija ispod reda počinje od teksta, kao u dizajnu */
+.row > :first-child {
+  border-bottom-color: transparent;
+  background: linear-gradient(var(--color-border), var(--color-border)) 24px 100% / calc(100% - 24px) 1px no-repeat;
+}
+
+.rowLabel { padding-left: 24px !important; text-align: left !important; font-size: var(--fs-15); }
+.featuredCol { background: var(--color-tag); }
+
+.check { display: inline-block; vertical-align: middle; color: var(--color-brand); }
+.check :global(*) { vector-effect: non-scaling-stroke; stroke-width: 1.7px; }
+.dash { color: #dce2e4; }
+.value { font-weight: 500; }
+.addon { color: var(--color-text-muted); }
+
+/* ---------- Dugmad ---------- */
+.ctaCell { padding: 20px 12px !important; }
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 55px;
+  border: 1px solid var(--color-brand);
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  font-size: var(--fs-16);
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--color-ink);
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease), filter var(--dur) var(--ease);
+}
+.cta:hover { background: var(--color-brand); color: var(--color-white); }
+.ctaPrimary { border-color: transparent; background: var(--gradient-btn-booking); color: var(--color-white); }
+.ctaPrimary:hover { background: var(--gradient-btn-booking); filter: brightness(1.08); }
+.ctaIcon :global(*) { vector-effect: non-scaling-stroke; stroke-width: 1.7px; }
+
+@media (max-width: 640px) {
+  .section { padding-top: 72px; }
+  .scroller { margin-top: 32px; }
+  .headLabel, .rowLabel, .groupRow th { padding-left: 16px !important; }
+}

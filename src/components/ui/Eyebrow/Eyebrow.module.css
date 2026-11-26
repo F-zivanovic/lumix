@@ -13,3 +13,4 @@
 .light { background: var(--color-brand-tint); color: var(--color-brand); }
 .dark { background: var(--color-brand-tint-strong); color: var(--color-white); border-radius: 32px; }
 .gradient { background: var(--gradient-pill-dark); color: var(--color-white); }
+.accent { background: #033039; color: var(--color-brand-light); }
