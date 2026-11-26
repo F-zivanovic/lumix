@@ -23,8 +23,10 @@ src/
     en/site.ts            globalni sadržaj: navigacija, footer, društvene mreže
     en/home.ts            sadržaj početne stranice
     en/booking.ts         booking stranica: tekstovi, usluge, gradovi, filteri + lista salona
+    en/salon-profiles.ts  stranica salona: kategorije, usluge sa cenama, galerija
   lib/content.ts          JEDINI pristup sadržaju (ovde se kasnije uključuje CMS)
   lib/salon-search.ts     pravila pretrage salona (čiste funkcije, mogu i na server)
+  lib/salon-format.ts     radno vreme ("Mon–Sat, 9 am–9 pm") i cene
   styles/tokens.css       boje, tipografija, razmaci, senke (nazivi prate Figmu)
   components/
     ui/                   Button, Eyebrow, Container, Icon
@@ -32,6 +34,7 @@ src/
     sections/             Hero, Steps, Audience, Showcase, ClosingCta + SectionRenderer
     booking/              interaktivni demo booking widgeta
     salons/               /booking: SalonFinder, SearchBar (usluge · lokacija · vreme), SalonCard
+    salon-profile/        /booking/[slug]: SalonHero, SalonServices (kategorije, usluge, galerija)
 scripts/build-icons.mjs   generiše SVG ikonice iz Iconify setova
 public/images/            slike iz Figme
 ```
@@ -78,8 +81,23 @@ Lista svih salona sa pretragom i filterima (Figma: „Booking page“).
   (`/booking?services=hair,nails&city=novi-sad&date=2026-11-27&time=morning&filter=new`),
   pa se može podeliti linkom.
 - **Podaci** — saloni su u `content/en/booking.ts`; kada postoji backend, menja se samo
-  `getSalons()` u `lib/content.ts`. Dugme „Book“ vodi na `/booking/[slug]` (sledeći korak).
+  `getSalons()` u `lib/content.ts`. Dugme „Book“ vodi na stranicu salona.
 - Otvorena stanja padajućih panela ne postoje u Figmi — urađena su u istom vizuelnom jeziku.
+
+## Stranica salona (`/booking/[slug]`)
+
+Figma: „Salon profile“ i „Manicure / Photos“. Sve stranice salona se generišu unapred
+(`generateStaticParams`), a nepoznat salon vraća 404.
+
+- **Zaglavlje** — breadcrumb nazad na listu, naziv, adresa, radno vreme (sažeto iz `hours`,
+  npr. „Mon–Sat, 9 am–9 pm“), ocena i dugme „Book an appointment“.
+- **Kategorije** — All + kategorije salona sa brojem usluga. Izbor kategorije sužava listu usluga
+  i prebacuje galeriju na **Photos** te kategorije (ako postoje fotografije), kao u Figmi.
+- **Usluge** — grupisane po kategoriji, sa trajanjem i cenom. Klik na uslugu vodi na
+  `/booking/[slug]/book?service=<id>` (sledeći korak: zakazivanje).
+- **Galerija** — Salon (prostor) · Photos (radovi, po kategoriji) · Videos; prazno stanje kada nema sadržaja.
+- **URL** — `?category=manicure&media=photos`, pa se izbor može podeliti linkom.
+- **Podaci** — `content/en/salon-profiles.ts`; kasnije `getSalon()` u `lib/content.ts` čita API.
 
 ## Napomene
 

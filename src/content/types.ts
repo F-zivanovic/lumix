@@ -201,4 +201,56 @@ export interface BookingPageContent {
     away: string;
   };
   closing: ClosingCtaSection;
+  salonPage: SalonPageContent;
+}
+
+/* ---------- Stranica salona (/booking/[slug]) ---------- */
+
+export type MediaKind = 'salon' | 'photos' | 'videos';
+
+export interface SalonServiceItem {
+  id: string;
+  name: string;
+  /** ID kategorije iz `SalonProfile.categories`. */
+  category: string;
+  durationMin: number;
+  price: number;
+}
+
+export interface VideoAsset {
+  src: string;
+  poster: ImageAsset;
+  title: string;
+}
+
+/** Detalji salona koji se prikazuju na njegovoj stranici (lista ga ne učitava). */
+export interface SalonProfile {
+  salonId: string;
+  currency: string;
+  categories: { id: string; label: string }[];
+  services: SalonServiceItem[];
+  gallery: {
+    /** Fotografije prostora salona. */
+    salon: ImageAsset[];
+    /** Fotografije radova, po kategoriji usluge. */
+    photos: { category: string; image: ImageAsset }[];
+    videos: VideoAsset[];
+  };
+}
+
+export interface SalonPageContent {
+  breadcrumb: string;
+  bookCta: string;
+  servicesTitle: string;
+  allCategory: string;
+  allServices: string;
+  /** `{count}` se menja brojem usluga. */
+  servicesCount: { one: string; other: string };
+  minutes: string;
+  galleryTitle: string;
+  media: Record<MediaKind, string>;
+  emptyMedia: Record<MediaKind, string>;
+  /** Npr. "Mon–Sat, 9 am–9 pm"; tekst kada je salon zatvoren ceo dan. */
+  closed: string;
+  weekdaysShort: [string, string, string, string, string, string, string];
 }

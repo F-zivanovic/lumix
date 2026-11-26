@@ -3,10 +3,11 @@
  * Danas čita lokalne TS fajlove; sutra ovde ide fetch ka CMS-u ili bazi
  * (potpis funkcija ostaje isti, pa se ostatak aplikacije ne menja).
  */
-import type { BookingPageContent, Locale, PageContent, Salon, SiteContent } from '@/content/types';
+import type { BookingPageContent, Locale, PageContent, Salon, SalonProfile, SiteContent } from '@/content/types';
 import { site as siteEn } from '@/content/en/site';
 import { home as homeEn } from '@/content/en/home';
 import { booking as bookingEn, salons as salonsEn } from '@/content/en/booking';
+import { salonProfiles as salonProfilesEn } from '@/content/en/salon-profiles';
 
 export const defaultLocale: Locale = 'en';
 
@@ -31,4 +32,14 @@ export async function getBookingPage(locale: Locale = defaultLocale): Promise<Bo
 /** Lista salona. Kada postoji backend, ovde ide `fetch('/api/salons')` ili upit ka bazi. */
 export async function getSalons(_locale: Locale = defaultLocale): Promise<Salon[]> {
   return salonsEn;
+}
+
+/** Jedan salon sa detaljima za njegovu stranicu, ili `null` ako ne postoji. */
+export async function getSalon(
+  slug: string,
+  locale: Locale = defaultLocale,
+): Promise<{ salon: Salon; profile: SalonProfile } | null> {
+  const salon = (await getSalons(locale)).find((s) => s.slug === slug);
+  const profile = salon && salonProfilesEn.find((p) => p.salonId === salon.id);
+  return salon && profile ? { salon, profile } : null;
 }

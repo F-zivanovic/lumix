@@ -36,6 +36,7 @@
   --gradient-legal: linear-gradient(90deg, var(--color-brand) 0%, #065152 100%);
   /* Booking stranica: Figma "from new1 to #075a5c 160%" */
   --gradient-btn-booking: linear-gradient(90deg, var(--color-brand) 0%, var(--color-brand-700) 160%);
+  --gradient-salon-hero: radial-gradient(ellipse 62% 125% at 25% 100%, var(--color-discovery) 0%, var(--color-surface-muted) 100%);
   --gradient-discovery: radial-gradient(ellipse 52% 58% at 50% 60%, var(--color-discovery) 0%, var(--color-surface-muted) 100%);
 
   /* Tipografija */
