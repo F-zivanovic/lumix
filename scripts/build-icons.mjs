@@ -43,6 +43,12 @@ const ICONS = {
   building: 'lucide:building',
   image: 'lucide:image',
   video: 'lucide:video',
+  // Pricing
+  palette: 'lucide:palette',
+  'calendar-clock': 'lucide:calendar-clock',
+  'badge-check': 'lucide:badge-check',
+  plus: 'lucide:plus',
+  minus: 'lucide:minus',
 };
 
 const sets = {};

@@ -36,7 +36,7 @@ src/
     booking/              interaktivni demo booking widgeta
     salons/               /booking: SalonFinder, SearchBar (usluge · lokacija · vreme), SalonCard
     salon-profile/        /booking/[slug]: SalonHero, SalonServices (kategorije, usluge, galerija)
-    pricing/              /pricing: paketi i klizač Monthly / Annually
+    pricing/              /pricing: paketi + klizač, „website included“, tabela poređenja, SMS krediti, FAQ
 scripts/build-icons.mjs   generiše SVG ikonice iz Iconify setova
 public/images/            slike iz Figme
 ```
@@ -103,14 +103,20 @@ Figma: „Salon profile“ i „Manicure / Photos“. Sve stranice salona se gen
 
 ## Pricing (`/pricing`)
 
-Tri paketa (Starter, Growth, Business) sa klizačem **Monthly / Annually**.
+Tri paketa (Starter, Growth, Business) sa klizačem **Monthly / Annually**, zatim sekcije
+„Your new website? Included.“, tabela poređenja paketa, paketi SMS/WhatsApp kredita, FAQ i završni CTA.
+Sav tekst je u `content/en/pricing.ts` (`plans` i `sections`).
 
 - U sadržaju se za svaki paket unose samo `monthlyPrice` (mesečno plaćanje) i `annualPrice`
   (ukupno za godinu). Sve ostalo se računa: cena po mesecu pri godišnjem plaćanju
   (`annualPrice / 12`, npr. 30,000 → 2,500 RSD / mo) i ušteda (`monthlyPrice × 12 − annualPrice`).
-- Podrazumevano je godišnje plaćanje (kao u dizajnu). Izbor se pamti u URL-u (`?billing=monthly`)
-  i prenosi na registraciju: dugmad vode na `/signup?plan=starter&billing=annual`.
-- Mesečno stanje nije bilo u dizajnu: prikazuje „Billed monthly“ i savet koliko se štedi godišnjim plaćanjem.
+- Podrazumevano je godišnje plaćanje. Godišnje stanje prikazuje oznaku „2 months FREE“, ukupan iznos i
+  uštedu; mesečno samo „Billed monthly“ (oba stanja prema dizajnu).
+- Izbor se pamti u URL-u (`?billing=monthly`) i prenosi na registraciju: dugmad na karticama i u tabeli
+  vode na `/signup?plan=starter&billing=annual`.
+- **Tabela poređenja** — vrednost po paketu je `true` (✓), `false` (—) ili tekst („Up to 5“, „Paid add-on“).
+  Na mobilnom se tabela skroluje horizontalno.
+- **FAQ** — odgovori nisu bili u dizajnu; napisani su na osnovu ostatka stranice i treba ih proveriti.
 
 ## Napomene
 

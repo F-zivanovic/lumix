@@ -5,6 +5,11 @@ import { useEffect, useState } from 'react';
 import type { BillingPeriod, PricingPageContent, PricingPlan } from '@/content/types';
 import { Container, Eyebrow, Icon } from '@/components/ui';
 import { formatPrice } from '@/lib/salon-format';
+import { ClosingCta } from '@/components/sections/ClosingCta/ClosingCta';
+import { WebsiteIncluded } from './WebsiteIncluded';
+import { ComparePlans } from './ComparePlans';
+import { MessageCredits } from './MessageCredits';
+import { PricingFaq } from './PricingFaq';
 import styles from './Pricing.module.css';
 
 /** Cene za izabrani period: cena po mesecu, ukupno godišnje i ušteda. */
@@ -16,13 +21,11 @@ export function planPricing(plan: PricingPlan, period: BillingPeriod) {
 }
 
 /**
- * Figma: Pricing. Klizač Monthly / Annually menja cene na svim karticama;
- * izbor se pamti u URL-u (?billing=monthly) i prenosi na registraciju.
+ * Cela Pricing stranica. Klizač Monthly / Annually menja cene na karticama i linkove
+ * dugmadi (i u tabeli poređenja); izbor se pamti u URL-u (?billing=monthly).
  */
-export function Pricing({ content }: { content: PricingPageContent }) {
+export function PricingView({ content }: { content: PricingPageContent }) {
   const [period, setPeriod] = useState<BillingPeriod>('annual');
-  const b = content.billing;
-  const money = (n: number) => `${formatPrice(n)} ${content.currency}`;
 
   useEffect(() => {
     if (new URLSearchParams(window.location.search).get('billing') === 'monthly') setPeriod('monthly');
@@ -36,6 +39,29 @@ export function Pricing({ content }: { content: PricingPageContent }) {
     window.history.replaceState(null, '', url);
   };
 
+  const { sections } = content;
+  return (
+    <>
+      <PricingPlans content={content} period={period} onChange={choose} />
+      <WebsiteIncluded content={sections.website} />
+      <ComparePlans content={content} period={period} />
+      <MessageCredits content={sections.messages} />
+      <PricingFaq content={sections.faq} />
+      <ClosingCta {...sections.closing} />
+    </>
+  );
+}
+
+interface PricingPlansProps {
+  content: PricingPageContent;
+  period: BillingPeriod;
+  onChange: (period: BillingPeriod) => void;
+}
+
+/** Uvod, klizač i tri paketa (Figma: gornji deo stranice). */
+function PricingPlans({ content, period, onChange: choose }: PricingPlansProps) {
+  const b = content.billing;
+  const money = (n: number) => `${formatPrice(n)} ${content.currency}`;
   const annual = period === 'annual';
 
   return (
@@ -68,7 +94,8 @@ export function Pricing({ content }: { content: PricingPageContent }) {
             <button type="button" className={styles.periodLabel} aria-pressed={annual} onClick={() => choose('annual')}>
               {b.annual}
             </button>
-            <span className={styles.freeBadge}>{b.annualBadge}</span>
+            {/* Kao u dizajnu: oznaka se vidi samo uz godišnje plaćanje */}
+            {annual && <span className={styles.freeBadge}>{b.annualBadge}</span>}
           </div>
         </header>
 
@@ -95,9 +122,7 @@ export function Pricing({ content }: { content: PricingPageContent }) {
                   <p className={styles.billed}>
                     {annual ? b.billedAnnually.replace('{amount}', money(p.total)) : b.billedMonthly}
                   </p>
-                  <p className={`${styles.save} ${annual ? '' : styles.saveHint}`}>
-                    {(annual ? b.saveAnnual : b.saveIfAnnual).replace('{amount}', money(p.savings))}
-                  </p>
+                  {annual && <p className={styles.save}>{b.saveAnnual.replace('{amount}', money(p.savings))}</p>}
                 </div>
 
                 <Link

@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: 56px;
   padding-top: 112px;
-  padding-bottom: 96px;
+  padding-bottom: 0;
 }
 
 /* ---------- Uvod ---------- */
@@ -31,6 +31,7 @@
 /* ---------- Klizač ---------- */
 .billing {
   display: flex;
+  min-height: 26px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
@@ -150,8 +151,6 @@
   line-height: 15px;
   color: var(--color-brand);
 }
-/* Mesečno: ista pozicija, ali kao savet umesto uštede */
-.saveHint { background: transparent; padding-inline: 0; font-weight: 500; }
 
 .cta {
   display: flex;
@@ -198,7 +197,6 @@
 .featured .unit,
 .featured .billed { color: var(--color-muted-on-dark); }
 .featured .save { background: #033039; color: var(--color-brand-light); }
-.featured .saveHint { background: transparent; }
 .featured .features { border-top-color: var(--color-card-dark-divider); }
 .featured .check { color: var(--color-brand-light); }
 

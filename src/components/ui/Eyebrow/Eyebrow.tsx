@@ -2,7 +2,7 @@ import styles from './Eyebrow.module.css';
 
 interface EyebrowProps {
   children: string;
-  tone?: 'light' | 'dark' | 'gradient';
+  tone?: 'light' | 'dark' | 'gradient' | 'accent';
 }
 
 /** Mala "pill" oznaka iznad naslova sekcije. */
